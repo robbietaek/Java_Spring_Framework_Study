@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Thu Jan 02 17:17:32 KST 2020
+org.eclipse.jst.j2ee.server\:/binary\:C\:\\Users\\GDJ_19\\.m2\\repository\\org\\springframework\\spring-web\\5.0.4.RELEASE\\spring-web-5.0.4.RELEASE.jar=WEB-INF/lib/spring-web-5.0.4.RELEASE.jar
+org.eclipse.jst.j2ee.server\:/binary\:C\:\\Users\\GDJ_19\\.m2\\repository\\org\\springframework\\spring-web\\4.3.25.RELEASE\\spring-web-4.3.25.RELEASE.jar=WEB-INF/lib/spring-web-4.3.25.RELEASE.jar

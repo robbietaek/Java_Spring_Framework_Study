@@ -1,0 +1,13 @@
+package hash;
+
+/*
+ * SHA256 알고리즘을 이용하여 userbackup 테이블의 비밀번호를 해쉬값으로 변경하기
+ */
+
+public class DigestMain2 {
+
+	public static void main(String[] args) {
+
+	}
+
+}

@@ -1,0 +1,15 @@
+package dao.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+
+import logic.Board;
+
+public interface BoardMapper {
+
+	@Insert("insert into board (num, name, pass, subject, file1, content, regdate, readcnt, grp, grplevel, grpstep) values "
+			+ "(#{num}, #{name}, #{pass}, #{subject}, #{fileurl}, #{content}, now(), 0, #{grp}, #{grplevel}, #{grpstep})")
+	void insert(Board board);
+
+	
+	
+}

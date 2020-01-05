@@ -1,0 +1,9 @@
+
+12월 19, 2019 11:12:43.78 NEW SESSION
+12월 19, 2019 11:12:43.78 [1212:9668:1219/111243.774:ERROR:socket_stream.cc(218)] Closing stream with result -2
+
+12월 23, 2019 14:50:28.07 NEW SESSION
+12월 23, 2019 14:50:28.07 [11924:11740:1223/145028.074:ERROR:socket_stream.cc(218)] Closing stream with result -2
+
+12월 29, 2019 20:41:20.40 NEW SESSION
+12월 29, 2019 20:41:20.40 [16924:16808:1229/204120.408:ERROR:page_load_metrics_update_dispatcher.cc(165)] Invalid first_paint 0.103 s for first_image_paint 0.1 s

@@ -1,0 +1,12 @@
+package aes;
+
+/*
+ * useraccount 테이블의 email 값을 읽어서
+ * userbackup 테이블의 email을 암호화하기
+ * key는 id의 해쉬값 문자열 앞 16자리로 정한다.
+ */
+public class CipherMain3 {
+	public static void main(String[] args) {
+		
+	}
+}

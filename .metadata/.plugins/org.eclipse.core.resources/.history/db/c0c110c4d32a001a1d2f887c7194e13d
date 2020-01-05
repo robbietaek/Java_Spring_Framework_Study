@@ -1,0 +1,19 @@
+package hash;
+
+import java.sql.*;
+
+/*
+ * SHA256 알고리즘을 이용하여 userbackup 테이블의 비밀번호를 해쉬값으로 변경하기
+ */
+
+public class DigestMain2 {
+
+	public static void main(String[] args) throws Exception {
+
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc.mariadb://localhost:3306/classdb","scott","1234");
+		
+		
+	}
+
+}

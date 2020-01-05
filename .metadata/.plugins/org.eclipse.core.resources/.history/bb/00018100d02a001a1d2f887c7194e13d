@@ -1,0 +1,17 @@
+package hash;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class DigestMain1 {
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		byte[] plain = null;
+		byte[] hash = null;
+		String[] algo = {"MD5","SHA-1","SHA-256","SHA-512"};
+		System.out.println("해쉬값을 구할 문자열을 입력하세요.");
+		plain = br.readLine().getBytes();
+		System.out.println("평문 : " + new String(plain));
+		
+	}
+}

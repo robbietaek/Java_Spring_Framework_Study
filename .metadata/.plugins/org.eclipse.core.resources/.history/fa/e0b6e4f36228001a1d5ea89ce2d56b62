@@ -1,0 +1,59 @@
+package dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
+
+import dao.mapper.ItemMapper;
+import logic.Item;
+import logic.User;
+
+@Repository		//@Component + dao 기능
+public class ItemDao {
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	private Map<String, Object> param = new HashMap<String, Object>();
+	
+	public List<Item> list() {
+		param.clear();
+		sqlSession.getMapper(ItemMapper.class).select(null);
+	}
+	
+	public void insert(Item item) {
+		param.clear();
+		//id : 등록된 id의 최대값
+		int id = sqlSession.getMapper(ItemMapper.class).maxid();		//결과를 Integer로 전달
+		item.setId(++id+"");		//String 으로 형변환
+		sqlSession.getMapper(ItemMapper.class).insert(item);	//db에 등록
+			
+	}
+	
+	public Item selectOne(String id){
+		param.clear();
+		param.put("id", id);
+		return sqlSession.getMapper(ItemMapper.class).select(param);
+	}
+//
+//	public void update(Item item) {
+//		String sql = "update item set name = :name, price = :price, description = :description, pictureUrl = :pictureUrl where id = :id";
+//		SqlParameterSource proparam = new BeanPropertySqlParameterSource(item);		//맵으로 하나하나 다 쳐넣어야하니까 귀찮아서 한번에 쳐넣는것
+//		template.update(sql,proparam);
+//	}
+//	public void delete(String id) {
+//		param.clear();
+//		param.put("id", id);
+//		template.update("delete from item where id = :id", param);
+//	}
+	
+}

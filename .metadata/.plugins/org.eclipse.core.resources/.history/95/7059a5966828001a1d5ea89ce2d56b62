@@ -1,0 +1,67 @@
+package dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
+
+import dao.mapper.UserMapper;
+import logic.User;
+
+@Repository
+public class UserDao {
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	private Map<String, Object> param = new HashMap<String, Object>();
+
+	public void insert(User user) {
+		sqlSession.getMapper(UserMapper.class)
+	}
+
+	public User selectOne(String userid) {
+		param.clear();
+		param.put("userid", userid);
+		return sqlSession.queryForObject(sql, param, mapper);
+
+	}
+
+	public void update(User user) {
+		String sql = "update useraccount set username = :username, phoneno = :phoneno, postcode = :postcode, address = :address, "
+				+ "email = :email, birthday = :birthday where userid = :userid";
+		SqlParameterSource proparam = new BeanPropertySqlParameterSource(user);
+		sqlSession.update(sql, proparam);
+	}
+
+	public void delete(String userid) {
+		param.clear();
+		param.put("userid", userid);
+		String sql = "delete from useraccount where userid = :userid";
+		sqlSession.update(sql, param);
+	}
+
+	public List<User> list() {
+		return sqlSession.query("select * from useraccount", mapper);
+	}
+
+	public List<User> list(String[] idchks) {
+
+		String ids = "";
+		
+		for(int i = 0 ;i <idchks.length;i++) {
+			ids += "'" + idchks[i] + ((i==idchks.length-1)?"'":"',");
+		}
+		String sql = "select * from useraccount where userid in (" + ids +")";
+		return sqlSession.query(sql, mapper);
+	}
+
+}

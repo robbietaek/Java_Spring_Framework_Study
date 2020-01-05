@@ -1,0 +1,83 @@
+package dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
+
+import dao.mapper.BoardMapper;
+import logic.Board;
+
+@Repository
+public class BoardDao {
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	private Map<String, Object> param = new HashMap<String, Object>();
+	
+	public int count(String searchtype, String searchcontent) {
+		param.clear();
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		return sqlSession.getMapper(BoardMapper.class).count(param);
+	}
+	public List<Board> list(Integer pageNum, Integer limit, String searchtype, String searchcontent) {
+		param.clear();
+		param.put("startrow", (pageNum-1) * limit);
+		param.put("limit", limit);
+		param.put("searchtype",searchtype);
+		param.put("searchcontent", searchcontent);
+		return sqlSession.getMapper(BoardMapper.class).select(param);
+	}
+	
+	public int maxnum() {
+		return sqlSession.getMapper(BoardMapper.class).maxnum();
+	}
+	public void insert(Board board) {
+		String sql = "insert into board (num, name, pass, subject, file1, content, regdate, readcnt, grp, grplevel, grpstep) values (:num, :name, :pass, :subject,:fileurl, :content, now(), 0, :grp, :grplevel, :grpstep)";
+		sqlSession.getMapper(BoardMapper.class).insert(board);
+	}
+	public Board selectOne(Integer num) {
+		param.clear();
+		param.put("num", num);
+		String sql = "select num, name, pass, subject, content, file1 fileurl, regdate, readcnt, grp, grplevel, grpstep from board where num = :num";
+		return sqlSession.getMapper(BoardMapper.class).;
+	}
+	public void readcntadd(Integer num) {
+		param.clear();
+		param.put("num", num);
+		String sql = "update board set readcnt = readcnt+1 where num = :num";
+		sqlSession.getMapper(BoardMapper.class).;
+	}
+	public void updateGrpStep(Board board) {
+		String sql = "update board set grpstep = grpstep +1 where grp = :grp and grpstep > :grpstep";
+		param.clear();
+		param.put("grp",board.getGrp());
+		param.put("grpstep",board.getGrpstep());
+		sqlSession.getMapper(BoardMapper.class).;
+		
+	}
+	
+	public void update(Board board) {
+		String sql = "update board set name = :name, pass = :pass, subject = :subject, file1 = :fileurl, content = :content where num = :num"; 
+		SqlParameterSource proparam = new BeanPropertySqlParameterSource(board);
+		sqlSession.getMapper(BoardMapper.class).;
+	}
+	public void delete(Integer num) {
+		param.clear();
+		param.put("num", num);
+		String sql = "delete from board where num = :num";
+		sqlSession.getMapper(BoardMapper.class).;
+	}
+
+}

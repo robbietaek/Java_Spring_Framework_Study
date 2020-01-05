@@ -1,0 +1,29 @@
+package hash;
+
+import java.security.MessageDigest;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import aes.CipherUtil;
+
+public class CipherMain4 {
+	public static void main(String[] args) throws Exception {
+		
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/classdb", "scott", "1234");
+		PreparedStatement pstmt = conn.prepareStatement("select userid, email from userbackup");
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			String id = rs.getString(1);
+			String email = rs.getString(2);
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			String key = CipherUtil.makehash(id).substring(0,16);
+			String cipher1 = CipherUtil.decrypt(email, key);
+			System.out.println(id + " : 이메일 = " + cipher1);
+		}
+
+	}
+}

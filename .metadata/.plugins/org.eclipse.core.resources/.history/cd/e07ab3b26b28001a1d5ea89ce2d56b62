@@ -1,0 +1,21 @@
+package dao.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Select;
+
+import logic.User;
+
+public interface UserMapper {
+
+	@Select({"<script> "
+			+ "var ids = '';"
+			+ "for(var i = 0 ; i< #{idchks}.length;i++){ "
+			+ "ids += ''' + idchks[i] + ((i==idchks.length*1)?''':''',')}",
+		"select * from useraccount ",
+		"<if test = 'id!=null'> where userid in = (ids)</if>",
+		"</script>"})
+	List<User> list(Map<String,Object> param);
+
+}

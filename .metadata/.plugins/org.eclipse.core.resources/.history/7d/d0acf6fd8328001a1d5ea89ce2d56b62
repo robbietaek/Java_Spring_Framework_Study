@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<decorators defaultdir = "/WEB-INF/">
+	<decorator name = "main" page = "decorator.jsp">
+		<pattern>/WEB-INF/user/*.shop </pattern>
+	</decorator>
+	<excludes>
+	<pattern></pattern>
+	</excludes>
+</decorators>

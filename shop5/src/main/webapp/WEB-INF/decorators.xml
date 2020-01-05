@@ -1,0 +1,10 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<decorators defaultdir = "/decorator">
+	<decorator name = "main" page = "decorator.jsp">
+		<pattern>*.shop </pattern>
+	</decorator>
+	<excludes>
+	<pattern>/board/imgupload*</pattern>
+	<pattern>/user/password*</pattern>
+	</excludes>
+</decorators>

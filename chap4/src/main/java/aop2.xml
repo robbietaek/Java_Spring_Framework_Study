@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /src/main/java/applicationContext.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/context
+             http://www.springframework.org/schema/context/spring-context.xsd
+             http://www.springframework.org/schema/aop
+             http://www.springframework.org/schema/aop/spring-aop.xsd">
+             
+	<bean id = "loggingAdvice" class = "xml.LoggingAdvice"/>
+	<bean id = "cacheAdvice" class = "xml.ArticleCacheAdvice"/>
+	<bean id = "traceAdvice" class = "xml.UpdateMemberInfoTraceAdvice"/>
+	<aop:config>
+	<aop:aspect id = "traceAspect" ref = "traceAdvice" order = "1">
+	<aop:after-returning method = "traceReturn" pointcut ="args(id,info)" returning = "ret" arg-names="ret,id,info"/><!-- 순서가 맞아야한다. -->
+	<!-- after-returning = 정상적으로 종료되면, pointcut = 핵심       args에 id와 info 가 있으면 실행하세요. -->
+	</aop:aspect> 
+	<aop:aspect id = "cacheAspect" ref="cacheAdvice" order = "2">
+		<aop:around method="cache" pointcut = "execution(public * *..ReadArticleService.*(..))"/>
+	</aop:aspect>
+	
+		<aop:aspect id = "loggingAspect" ref = "loggingAdvice" order = "3">
+		<aop:pointcut id = "publicMethod" expression = "execution(public * xml..*(..))"/>	<!-- main 에 있는 것들은 포함이 안된다. -->
+		<aop:before method="before" pointcut-ref = "publicMethod"/>	<!-- 모든 메서드가 실행되기 전에 반드시 실행된다. -->
+		<aop:after-returning method = "afterReturning" pointcut-ref = "publicMethod" returning = "ret"/>	<!-- ret : 결과값 -->
+		<aop:after-throwing method = "afterThrowing" pointcut-ref = "publicMethod" throwing = "ex"/>
+		<aop:after method = "afterFinally" pointcut-ref = "publicMethod"/>
+		</aop:aspect>
+	</aop:config>             
+</beans>

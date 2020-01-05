@@ -1,0 +1,16 @@
+package websocket;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+public class EchoHandler extends TextWebSocketHandler{
+	private Set<WebSocketSession> clients = new HashSet<WebSocketSession>();
+	
+	@Override
+	public void afterConnectionEstablished (WebSocketSession session) throws Exception{
+		
+	}
+}

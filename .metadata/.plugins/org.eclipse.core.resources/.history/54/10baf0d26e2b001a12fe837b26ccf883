@@ -1,0 +1,11 @@
+package aes;
+
+public class CipherMain1 {
+	public static void main(String[] args) {
+		String plain1 = "안녕하세요. 홍길동입니다.";
+		String cipher1 = CipherUtil.encrypt(plain1);
+		System.out.println("암호문 : "+ cipher1);
+		String cipher2 = CipherUtil.decrypt(plain1);
+		System.out.println("복호문" + plain2);
+	}
+}

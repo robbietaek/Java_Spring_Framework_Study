@@ -1,0 +1,21 @@
+1576473593433	Move 'list.jsp' to 'item'
+1576545894700	Move 'img' to 'item'
+1576557522822	Move 'userEntry.jsp' to 'user'
+1576560825873	Move 'UserDao.java' to 'dao'
+1576563369386	Move 'main.jsp' to 'user'
+1576566100809	Rename type 'UserloginAspect'
+1576566377459	Move 'LoginException.java' to 'exception'
+1576719348036	Delete element
+1576723127977	Rename resource 'decorator2.jsp'
+1576723147415	Delete element
+1576723160403	Delete element
+1576723173258	Delete element
+1576723192414	Delete element
+1576734221958	Rename resource 'shop2.sql'
+1576735888859	Copy file
+1576735894483	Rename resource 'cart2.jsp'
+1576735925020	Delete element
+1576735931385	Copy file
+1576808123749	Delete element
+1576808195623	Delete element
+1576830713107	Copy files

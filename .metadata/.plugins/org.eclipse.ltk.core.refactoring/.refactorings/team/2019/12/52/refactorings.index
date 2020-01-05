@@ -1,0 +1,37 @@
+1577350198529	Move 5 resources to 'resources'
+1577350244626	Move 5 resources to 'webapp'
+1577432851925	Delete elements
+1577432859198	Delete elements
+1577432865731	Delete elements
+1577432873571	Delete elements
+1577432924385	Delete element
+1577432990485	Delete elements
+1577433116772	Delete element
+1577433145680	Delete elements
+1577433152809	Delete element
+1577433156784	Delete element
+1577433449182	Move 'user' to 'WEB-INF'
+1577433453713	Move 4 resources to 'WEB-INF'
+1577433475316	Delete elements
+1577433477038	Delete element
+1577433499189	Delete element
+1577433532890	Delete element
+1577433589324	Delete element
+1577434033792	Delete element
+1577434044122	Delete element
+1577434176195	Rename resource 'index.html'
+1577434756498	Rename resource 'UserController.java'
+1577434764644	Rename resource 'ShoppingController.java'
+1577434771325	Rename resource 'shopping'
+1577434787419	Move 4 resources to 'user'
+1577434792764	Move 'product-details.html' to 'user'
+1577435926781	Rename resource 'cart.html'
+1577435956575	Move 'cart.jsp' to 'WEB-INF'
+1577435981956	Move 'cart.jsp' to 'user'
+1577436304359	Move 'decorator.jsp' to 'decorator'
+1577436323470	Move 'index.jsp' to 'WEB-INF'
+1577436371177	Move 'decorator' to 'WEB-INF'
+1577436383825	Move 'index.jsp' to 'user'
+1577436481672	Delete element
+1577436493017	Rename resource 'index.html'
+1577437543677	Delete element

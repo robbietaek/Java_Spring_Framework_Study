@@ -1,0 +1,52 @@
+package dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import dao.mapper.ItemMapper;
+import logic.Item;
+
+@Repository		//@Component + dao 기능
+public class ItemDao {
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	private Map<String, Object> param = new HashMap<String, Object>();
+	
+	public List<Item> list() {
+		param.clear();
+		sqlSession.getMapper(ItemMapper.class).select(null);
+	}
+	
+	public void insert(Item item) {
+		param.clear();
+		//id : 등록된 id의 최대값
+		int id = sqlSession.getMapper(ItemMapper.class).maxid();		//결과를 Integer로 전달
+		item.setId(++id+"");		//String 으로 형변환
+		sqlSession.getMapper(ItemMapper.class).insert(item);	//db에 등록
+			
+	}
+	
+	public Item selectOne(String id){
+		param.clear();
+		param.put("id", id);
+		return sqlSession.getMapper(ItemMapper.class).select(param);
+	}
+
+	public void update(Item item) {
+		sqlSession.getMapper(ItemMapper.class).update(item);
+	}
+	
+	public void delete(String id) {
+		param.clear();
+		param.put("id", id);
+		sqlSession.getMapper(ItemMapper.class).delete(param);
+	}
+	
+}

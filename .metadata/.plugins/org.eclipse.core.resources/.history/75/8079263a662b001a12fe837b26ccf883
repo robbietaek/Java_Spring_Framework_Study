@@ -1,0 +1,14 @@
+package hash;
+
+/*
+ * 화면에서 아이디와 비밀번호를 입력받아서
+ * 해당 아이디가 userbackup 테이블에 없으면 "아이디확인"출력
+ * 해당 아이디의 비밀번호를 비교해서 맞으면 "반갑습니다. 아이디님" 출력
+ * 해당 아이디의 비밀번호를 비교해서 틀리면 "비밀번호 확인" 출력
+ * 
+ */
+public class DigestMain3 {
+	public static void main(String[] args) {
+		
+	}
+}

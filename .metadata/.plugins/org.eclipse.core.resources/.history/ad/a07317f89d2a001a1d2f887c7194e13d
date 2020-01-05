@@ -1,0 +1,10 @@
+package dao.mapper;
+
+import org.apache.ibatis.annotations.Select;
+
+public interface SaleMapper {
+
+	@Select("select ifnull(max(saleid),0) from sale")
+	Integer maxsailid();
+		
+}
